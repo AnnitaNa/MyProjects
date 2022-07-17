@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=ZXdFisA_hOY&t=42s
+
+.NET 5 REST API Tutorial - Build From Scratch With C#
+
+freecode camp
