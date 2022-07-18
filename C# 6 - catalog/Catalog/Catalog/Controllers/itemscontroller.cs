@@ -23,15 +23,16 @@ public class itemscontroller : ControllerBase
         var item = repository.GetItems();
         return item;
     }
-    
-    // NOT WORKING!
-    
-    //GET items/id
-    //[HttpGet("{id}")]
-    //public Item GetItem(Guid id)
-    //{
-      //  var item = repository.GetItem(id);
-        //return item;
-    //}
+
+    [HttpGet("{id}")]
+    public ActionResult<Item> GetItem(Guid id)
+    {
+        var item = repository.GetItem(id);
+        if (item == null)
+        {
+            return NotFound();
+        }
+        return item;
+    }
 
 }

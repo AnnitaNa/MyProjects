@@ -16,6 +16,7 @@ public class inMemItemsRepository
         return items;
     }
 
+    //Get /items/{id}
     public Item GetItem(Guid id)
     {
         return items.Where(item => item.Id == id).SingleOrDefault();
