@@ -35,5 +35,38 @@ public class itemscontroller : ControllerBase
         }
         return item.AsDto();
     }
+    
+    [HttpPost]
+    public ActionResult<itemDto> CreateItem(CreateItemDto itemDto)
+    {
+        Item item = new()
+        {
+            Id = Guid.NewGuid(),
+            Name = itemDto.Name,
+            Price = itemDto.Price,
+            CreatedDate = DateTimeOffset.UtcNow
+        };
+        repository.Createitem((item));
+        return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item.AsDto());
+
+    }
+
+    [HttpPut("{id}")] //not working
+    public ActionResult UpdateItem(Guid id, UpdateItemDto itemDto)
+    {
+        var existingItem = repository.GetItem(id);
+        if (existingItem is null)
+        {
+            return NotFound();
+        }
+
+        Item updateItem = existingItem with
+        {
+            Name = itemDto.Name,
+            Price = itemDto.Price
+        };
+        repository.UpdateItem((updateItem));
+        return NoContent();
+    }
 
 }

@@ -4,8 +4,9 @@ namespace Catalog.Repositories;
 
 public interface IitemsRepository
 {
-
-        IEnumerable<Item> GetItems();
         Item GetItem(Guid id);
+        IEnumerable<Item> GetItems();
+        void Createitem(Item item);
+        void UpdateItem(Item item);
 
 }
